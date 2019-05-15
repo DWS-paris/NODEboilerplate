@@ -63,7 +63,7 @@ Définition du CRUD
     router.get('/article', (req, res) => {
 
         // Récupérer des données SQL
-        connection.query('SELECT * FROM post', (error, results, fields) => {
+        connexion.query('SELECT * FROM post', (error, results, fields) => {
             if (error) {
                 res.json({ msg: 'Error get all', err: error })
             }
@@ -81,7 +81,7 @@ Définition du CRUD
         const routeParam = req.params.id;
 
         // Récupérer des données SQL
-        connection.query(`SELECT * FROM post WHERE _id = ${routeParam}`, (error, results, fields) => {
+        connexion.query(`SELECT * FROM post WHERE _id = ${routeParam}`, (error, results, fields) => {
             if (error) {
                 res.json({ msg: 'Error get one', err: error })
             }
