@@ -1,9 +1,13 @@
 /*
 Importer les composants serveur
 */
+    // NodeJS
     require('dotenv').config();
     const express = require('express');
     const path = require('path');
+
+    // Inner
+    const frontRouter = require('./routes/front.router');
 //
 
 /*
@@ -13,9 +17,15 @@ Configuration du serveur
     const server = express();
     const port = process.env.PORT;
 
+    // Configuration du moteur de rendu
+    server.set('view engine', 'ejs'); 
+
     // Définition du dossier static du client
     server.set( 'views', __dirname + '/www' );
     server.use( express.static(path.join(__dirname, 'www')) );
+
+    // Utilisation des routers
+    server.use('/', frontRouter);
 //
 
 /* 
