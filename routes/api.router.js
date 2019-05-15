@@ -33,7 +33,7 @@ Définition du CRUD
         */
 
 
-        res.json({ msg: 'Create Article' })
+        res.json({ msg: 'Create Article', data: req.body })
     });
 
     // Read all Items: GET

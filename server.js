@@ -5,6 +5,7 @@ Importer les composants serveur
     require('dotenv').config();
     const express = require('express');
     const path = require('path');
+    const bodyParser = require('body-parser');
 
     // Inner
     const frontRouter = require('./routes/front.router');
@@ -24,6 +25,10 @@ Configuration du serveur
     // Définition du dossier static du client
     server.set( 'views', __dirname + '/www' );
     server.use( express.static(path.join(__dirname, 'www')) );
+
+    // Configurration de body-parser
+    server.use(bodyParser.json({limit: '10mb'}));
+    server.use(bodyParser.urlencoded({ extended: true }));
 
     // Utilisation des routers
     server.use('/api', apiRouter);
