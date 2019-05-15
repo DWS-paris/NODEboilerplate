@@ -6,6 +6,20 @@ Configurer le module de route
     const router = express.Router();
 //
 
+/* 
+Configure MySQL
+*/
+    const mysql = require('mysql');
+    const connexion = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'root',
+        password : 'root',
+        port: 8889,
+        database : 'node-boiler-plate'
+    });
+    connexion.connect();
+//
+
 /*
 Définition du CRUD
 */
