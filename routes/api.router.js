@@ -27,13 +27,36 @@ Définition du CRUD
     router.post('/article', (req, res) => {
 
         /* 
-            Pour créer un article il faut une valeur pour :
-            - title
-            - content
+        Pour créer un article il faut une valeur pour :
+        - title
+        - content
         */
+            if( 
+                req.body &&
+                req.body.title.length > 0 &&
+                req.body.content.length > 0
+             ){
+                // Définir l'item
+                const newItem = { title: req.body.title, content : req.body.content };
+
+                // Enregistrer l'item
+                connexion.query(`INSERT INTO post SET ?`, newItem, (err, result, fields) => {
+                    if( err ){
+                        res.json({ msg: 'Connection failed', data: err })
+                    }
+                    else{
+                        res.json({ msg: 'Create Article', data: result })
+                    }
+                })
+
+            }
+            else{
+                res.json({ msg: 'No data', data: null })
+            }
+        //
 
 
-        res.json({ msg: 'Create Article', data: req.body })
+        
     });
 
     // Read all Items: GET
