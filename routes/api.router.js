@@ -61,7 +61,17 @@ Définition du CRUD
 
     // Read all Items: GET
     router.get('/article', (req, res) => {
-        res.json({ msg: 'Read all Article' })
+
+        // Récupérer des données SQL
+        connection.query('SELECT * FROM post', (error, results, fields) => {
+            if (error) {
+                res.json({ msg: 'Error get all', err: error })
+            }
+            else{
+                res.json({ msg: 'Get ALL', data: results })
+            }
+        });
+        
     });
 
     // Read one Item: GET
